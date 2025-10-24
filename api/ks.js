@@ -1,28 +1,28 @@
 // 快手极速版模拟接口
-出口 系统默认值 功能 处理者(请求, 表示留数) {
-  如果 (请求.全球资源定位器(制服Resource Locator).包含(/用户/信息')) {
-    返回 表示留数.json({
-      结果: 1,
-      数据: { 使用者辩证码: '123456', 绰号: '测试用户', 金色的: 1500 }
+export default function handler(req, res) {
+  if (req.url.includes('/user/info')) {
+    return res.json({
+      result: 1,
+      data: { userId: '123456', nickname: '测试用户', gold: 1500 }
     });
   }
-  如果 (请求.全球资源定位器(制服Resource Locator).包含(/账户/余额')) {
-    返回 表示留数.json({
-      结果: 1,
-      数据: { 金色的: 1500, 平衡: 12.5 }
+  if (req.url.includes('/account/balance')) {
+    return res.json({
+      result: 1,
+      data: { gold: 1500, balance: 12.5 }
     });
   }
-  如果 (请求.全球资源定位器(制服Resource Locator).包含(/任务/全部')) {
-    返回 表示留数.json({
-      结果: 1,
-      数据: [{ taskId: ' ad_001 ', 任务名: '看广告得金币', 报酬: 10 }]
+  if (req.url.includes('/task/all')) {
+    return res.json({
+      result: 1,
+      data: [{ taskId: 'ad_001', taskName: '看广告得金币', reward: 10 }]
     });
   }
-  如果 (请求.全球资源定位器(制服Resource Locator).包含(/task/treasurebox)) {
-    返回 表示留数.json({
-      结果: 1,
-      数据: { taskId: 任务_ ' + 日期.现在(), 报酬: 15 }
+  if (req.url.includes('/task/treasurebox')) {
+    return res.json({
+      result: 1,
+      data: { taskId: 'task_' + Date.now(), reward: 15 }
     });
   }
-  表示留数.json({ 结果: 1, 消息: “成功” });
+  res.json({ result: 1, message: 'success' });
 }
